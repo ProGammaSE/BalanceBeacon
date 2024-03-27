@@ -13,8 +13,20 @@
         android:theme="@style/Theme.BalanceBeacon_FE"
         tools:targetApi="31">
         <activity
-            android:name=".LoginPage"
+            android:name=".Components.LoginPage"
             android:exported="false" />
+        <activity
+            android:name=".Components.RegisterPage"
+            android:exported="false" />
+        <activity
+            android:name=".Components.WelcomePage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.balancebeacon_fe;
+package com.example.balancebeacon_fe.Components;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.balancebeacon_fe.R;
 
 public class LoginPage extends AppCompatActivity {
 
