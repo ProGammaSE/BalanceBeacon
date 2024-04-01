@@ -34,7 +34,7 @@
         android:fontFamily="@font/sf_display_semibold"
         android:text="Login"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/login_dot_menu"
         app:layout_constraintStart_toEndOf="@+id/login_back_button"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@
         android:fontFamily="@font/sf_display_bold"
         android:text="Welcome Back"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_vector_image" />
@@ -66,18 +66,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/sf_display_medium"
         android:text="Email"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_welcome_back_text" />
 
     <EditText
         android:id="@+id/login_email_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -94,17 +94,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Password"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email_field" />
 
     <EditText
         android:id="@+id/login_password_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -116,9 +116,9 @@
         app:layout_constraintTop_toBottomOf="@+id/login_password_text" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
+        android:id="@+id/login_login_button"
+        android:layout_width="181dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -129,11 +129,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="53dp"
         android:fontFamily="@font/sf_display_semibold"
         android:text="Create a new account"
         android:textColor="@color/bb_green"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2" />
+        app:layout_constraintEnd_toStartOf="@+id/login_login_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

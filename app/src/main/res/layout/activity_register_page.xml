@@ -25,7 +25,7 @@
         android:fontFamily="@font/sf_display_semibold"
         android:text="Register"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/register_dot_menu"
         app:layout_constraintStart_toEndOf="@+id/register_back_button"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,17 +45,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Name *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_back_button" />
 
     <EditText
         android:id="@+id/register_name_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -72,17 +72,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Email *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_name_field" />
 
     <EditText
         android:id="@+id/register_email_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -99,17 +99,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Phone *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_email_field" />
 
     <EditText
         android:id="@+id/register_phone_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -126,17 +126,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Gender *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_phone_field" />
 
     <ImageView
         android:id="@+id/register_gender_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="101dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,18 +148,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Age *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_gender_field" />
 
     <EditText
         android:id="@+id/register_age_field"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -171,22 +171,22 @@
         app:layout_constraintTop_toBottomOf="@+id/register_age_text" />
 
     <TextView
-        android:id="@+id/register_password_field"
+        android:id="@+id/register_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Password *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_age_field" />
 
     <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:id="@+id/register_password_field"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -195,7 +195,7 @@
         android:inputType="text"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_text" />
 
     <TextView
         android:id="@+id/register_confirm_password_text"
@@ -203,17 +203,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_display_semibold"
+        android:fontFamily="@font/sf_dispaly_medium"
         android:text="Confirm Password *"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
 
     <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="371dp"
-        android:layout_height="41dp"
+        android:id="@+id/register_confirm_password_field"
+        android:layout_width="433dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/text_field_design"
@@ -226,8 +226,8 @@
 
     <ImageView
         android:id="@+id/register_continue_button"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
+        android:layout_width="167dp"
+        android:layout_height="89dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -238,11 +238,11 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="53dp"
         android:fontFamily="@font/sf_display_semibold"
         android:text="Already registered?"
         android:textColor="@color/bb_green"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/register_continue_button" />
 
