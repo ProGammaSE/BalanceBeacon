@@ -1,6 +1,7 @@
 package com.example.balancebeacon_fe.Components;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,6 +36,8 @@ public class LoginPage extends AppCompatActivity {
     ImageView loginLoginButton;
     EditText loginUsername;
     EditText loginPassword;
+    TextView loginCreateNewAccount;
+    ImageView loginBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class LoginPage extends AppCompatActivity {
         loginLoginButton = findViewById(R.id.login_login_button);
         loginUsername = findViewById(R.id.login_email_field);
         loginPassword = findViewById(R.id.login_password_field);
+        loginCreateNewAccount = findViewById(R.id.login_create_new_account);
+        loginBackButton = findViewById(R.id.login_back_button);
 
         // button click
         loginLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +56,24 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("Clicking on the Login button");
                 clickOnTheLogin();
+            }
+        });
+
+        // clicking on the "Create new account" text
+        loginCreateNewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, RegisterPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // clicking on the back button
+        loginBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, WelcomePage.class);
+                startActivity(intent);
             }
         });
     }
@@ -81,9 +104,11 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // closing the pop up dialog
+                // below lines executes when clicking on the "Done" button in the pop up window
+                // Navigates to the Landing page once clicked
                 alertDialog.dismiss();
-                Toast.makeText(LoginPage.this, "Done", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginPage.this, LandingPage.class);
+                startActivity(intent);
             }
         });
         if (alertDialog.getWindow() != null) {
@@ -104,7 +129,6 @@ public class LoginPage extends AppCompatActivity {
             Toast.makeText(LoginPage.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
         }
         else {
-            System.out.println("Line 107");
             // creating a new object of the Login class and
             // assign the email & the password into it
             Login login = new Login();
@@ -133,7 +157,6 @@ public class LoginPage extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
-                        System.out.println("Line 129");
                         System.out.println(t.getMessage());
                         System.out.println(t.getCause());
                         t.printStackTrace();
@@ -141,6 +164,7 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
             } catch (Exception ex) {
+                Toast.makeText(LoginPage.this, "Cannot connect to the system!", Toast.LENGTH_LONG).show();
                 System.out.println(ex.getMessage());
                 System.out.println(ex.getCause());
                 ex.printStackTrace();

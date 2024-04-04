@@ -1,6 +1,7 @@
 package com.example.balancebeacon_fe.Components;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,6 +39,8 @@ public class RegisterPage extends AppCompatActivity {
     EditText registerPasswordField;
     EditText registerConfirmPasswordField;
     ImageView registerContinueButton;
+    ImageView registerBackButton;
+    TextView registerAlreadyRegistered;
 
 
     @Override
@@ -53,12 +56,32 @@ public class RegisterPage extends AppCompatActivity {
         registerPasswordField = findViewById(R.id.register_password_field);
         registerConfirmPasswordField = findViewById(R.id.register_confirm_password_field);
         registerContinueButton = findViewById(R.id.register_continue_button);
+        registerBackButton = findViewById(R.id.register_back_button);
+        registerAlreadyRegistered = findViewById(R.id.register_already_registered);
 
         // clicking on the continue button in the Register screen
         registerContinueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickOnTheRegister();
+            }
+        });
+
+        // clicking on the back button
+        registerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterPage.this, WelcomePage.class);
+                startActivity(intent);
+            }
+        });
+
+        // clicking on the "Already Registered" text
+        registerAlreadyRegistered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                startActivity(intent);
             }
         });
     }
@@ -86,9 +109,11 @@ public class RegisterPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // closing the pop up dialog
+                // below lines executes when clicking on the "Done" button in the pop up window
+                // Navigates to the Login page once clicked
                 alertDialog.dismiss();
-                Toast.makeText(RegisterPage.this, "Done", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                startActivity(intent);
             }
         });
         if (alertDialog.getWindow() != null) {

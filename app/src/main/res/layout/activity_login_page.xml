@@ -126,7 +126,7 @@
         app:srcCompat="@drawable/login_button_image" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/login_create_new_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="53dp"

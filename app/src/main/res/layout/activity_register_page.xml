@@ -235,7 +235,7 @@
         app:srcCompat="@drawable/continue_button_image" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/register_already_registered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="53dp"
