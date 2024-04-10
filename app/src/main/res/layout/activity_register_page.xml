@@ -133,28 +133,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_phone_field" />
 
-    <ImageView
-        android:id="@+id/register_gender_field"
-        android:layout_width="101dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_gender_text"
-        app:srcCompat="@drawable/gender_images" />
-
     <TextView
         android:id="@+id/register_age_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/sf_dispaly_medium"
         android:text="Age *"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_gender_field" />
+        app:layout_constraintTop_toBottomOf="@+id/gender_male" />
 
     <EditText
         android:id="@+id/register_age_field"
@@ -245,5 +235,37 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/register_continue_button" />
+
+    <Button
+        android:id="@+id/gender_male"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/gender_circle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:fontFamily="@font/sf_display_medium"
+
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="M"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
+
+    <Button
+        android:id="@+id/gender_female"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/gender_circle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:fontFamily="@font/sf_display_medium"
+        android:gravity="center"
+        android:text="F"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/gender_male"
+        app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

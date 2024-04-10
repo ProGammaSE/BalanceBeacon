@@ -2,6 +2,7 @@ package com.example.balancebeacon_fe.Components;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.balancebeacon_fe.Controllers.UserController;
 import com.example.balancebeacon_fe.Models.Login;
@@ -48,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         loginUsername = findViewById(R.id.login_email_field);
         loginPassword = findViewById(R.id.login_password_field);
         loginCreateNewAccount = findViewById(R.id.login_create_new_account);
-        loginBackButton = findViewById(R.id.login_back_button);
+        loginBackButton = findViewById(R.id.assessments_back_button);
 
         // button click
         loginLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +119,10 @@ public class LoginPage extends AppCompatActivity {
         String userPassword = loginPassword.getText().toString();
 
         if (userEmail.isEmpty()) {
-            Toast.makeText(LoginPage.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginPage.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
         }
         else if (userPassword.isEmpty()) {
-            Toast.makeText(LoginPage.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
         }
         else {
             // creating a new object of the Login class and
@@ -146,12 +142,21 @@ public class LoginPage extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         if (response.body().getResponseStatus() == 200) {
-                            Toast.makeText(LoginPage.this, response.body().getResponseDescription(), Toast.LENGTH_LONG).show();
-                            showPopUpDialog("Success", "BalanceBeacon user login");
+
+                            // save logged in user details to the mobile cache
+                            SharedPreferences sharedpreferences = getSharedPreferences("balanceBeacon",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                            editor.putInt("userId", response.body().getUsers().getUserId());
+                            editor.putString("userName", response.body().getUsers().getUserName());
+                            editor.apply();
+
+                            Toast.makeText(LoginPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
+                            showPopUpDialog("Success",  sharedpreferences.getString("userName", "User") + " logged in successfully");
 
                         }
                         else {
-                            Toast.makeText(LoginPage.this, response.body().getResponseDescription(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -160,11 +165,11 @@ public class LoginPage extends AppCompatActivity {
                         System.out.println(t.getMessage());
                         System.out.println(t.getCause());
                         t.printStackTrace();
-                        Toast.makeText(LoginPage.this, "Login failed!!aaadd", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginPage.this, "Login failed!!aaadd", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (Exception ex) {
-                Toast.makeText(LoginPage.this, "Cannot connect to the system!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginPage.this, "Cannot connect to the system!", Toast.LENGTH_SHORT).show();
                 System.out.println(ex.getMessage());
                 System.out.println(ex.getCause());
                 ex.printStackTrace();

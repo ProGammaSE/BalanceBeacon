@@ -1,8 +1,13 @@
 package com.example.balancebeacon_fe.Components;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -11,9 +16,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.balancebeacon_fe.Controllers.AreaController;
+import com.example.balancebeacon_fe.Controllers.AssessAreaController;
+import com.example.balancebeacon_fe.Controllers.UserController;
 import com.example.balancebeacon_fe.Models.Areas;
+import com.example.balancebeacon_fe.Models.AssessAreaRequest;
+import com.example.balancebeacon_fe.Models.GeneralResponse;
+import com.example.balancebeacon_fe.Models.UserResponse;
 import com.example.balancebeacon_fe.R;
 import com.example.balancebeacon_fe.Shared.Enums;
 import com.example.balancebeacon_fe.Shared.RetrofitClient;
@@ -36,11 +47,11 @@ public class LandingPage extends AppCompatActivity {
     ImageView landingPageContinueButton;
     List<Integer> selectedAreasArray = new ArrayList<Integer>();
     List<Areas> allDatabaseAreasArray = new ArrayList<Areas>();
+    ArrayList<Areas> userChosenAreas = new ArrayList<Areas>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_landing_page);
 
 //        landingChooseContainer = findViewById(R.id.landing_choose_container);
@@ -61,6 +72,7 @@ public class LandingPage extends AppCompatActivity {
                 landingSelectedTable.removeAllViews();
                 landingChooseTable.removeAllViews();
                 selectedAreasArray.clear();
+                userChosenAreas.clear();
                 loadChooseAreas();
             }
         });
@@ -74,21 +86,92 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        // clicking on the continue button
+        // this function works when clicking on the "Continue" button
         landingPageContinueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectedAreasArray.size() < 1) {
-                    Toast.makeText(LandingPage.this, "Choose at least one area", Toast.LENGTH_LONG).show();
+                if (selectedAreasArray.isEmpty()) {
+                    Toast.makeText(LandingPage.this, "Choose at least one area", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(LandingPage.this, AssessmentPage.class);
+                    startActivity(intent);
                 }
                 else {
-                    Toast.makeText(LandingPage.this, "Assessment successful", Toast.LENGTH_LONG).show();
+                    AssessAreaRequest assessAreaRequest = new AssessAreaRequest();
+
+                    // get current logged in user ID from the mobile cache and set it to the object
+                    SharedPreferences sharedpreferences = getSharedPreferences("balanceBeacon",MODE_PRIVATE);
+                    assessAreaRequest.setUserId(sharedpreferences.getInt("userId", 0));
+
+                    // set selected areas (chosen areas) to the object
+                    assessAreaRequest.setUserChosenAreas(userChosenAreas);
+
+                    // calling the Retrofit instance and sending data to the backend
+                    AssessAreaController assessAreaController = RetrofitClient.getRetrofitInstance().create(AssessAreaController.class);
+                    Call<GeneralResponse> call = assessAreaController.addUserAreas(assessAreaRequest);
+
+                    call.enqueue(new Callback<GeneralResponse>() {
+                        @Override
+                        public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+                            if (response.body().getResponseCode() == 200) {
+                                Toast.makeText(LandingPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
+                                showPopUpDialog("Success", "Areas added successfully");
+                            }
+                            else {
+                                Toast.makeText(LandingPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<GeneralResponse> call, Throwable t) {
+
+                        }
+                    });
+
+                    Toast.makeText(LandingPage.this, "Assessment successful", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+    /**
+     * pop up window to show the result of requests.
+     */
+    private void showPopUpDialog(String popUpTitle, String popUpDescription) {
+        // declaring parameters
+        ConstraintLayout alertPopUpSuccess = findViewById(R.id.alertPopUpSuccess);
+        View view = LayoutInflater.from(LandingPage.this).inflate(R.layout.alert_pop_up_success, alertPopUpSuccess);
+        Button popUpButton = view.findViewById(R.id.alert_success_done);
+        TextView alertSuccessTitle = view.findViewById(R.id.alert_success_title);
+        TextView alertSuccessDescription = view.findViewById(R.id.alert_success_description);
 
+
+        // setting the given title and description
+        alertSuccessTitle.setText(popUpTitle);
+        alertSuccessDescription.setText(popUpDescription);
+
+        // build the pop up dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPage.this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        // define the action of "Done" button in the pop up dialog
+        popUpButton.findViewById(R.id.alert_success_done).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // below lines executes when clicking on the "Done" button in the pop up window
+                // Navigates to the Landing page once clicked
+                alertDialog.dismiss();
+                Intent intent = new Intent(LandingPage.this, AssessmentPage.class);
+                startActivity(intent);
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
 
     /**
      * function to load all the Areas in the table layout
@@ -103,7 +186,7 @@ public class LandingPage extends AppCompatActivity {
         call.enqueue(new Callback<List<Areas>>() {
             @Override
             public void onResponse(Call<List<Areas>> call, Response<List<Areas>> response) {
-                Toast.makeText(LandingPage.this, "Success", Toast.LENGTH_LONG).show();
+                Toast.makeText(LandingPage.this, "Success", Toast.LENGTH_SHORT).show();
                 allDatabaseAreasArray = response.body();
 
                 // fill the choose table
@@ -183,7 +266,7 @@ public class LandingPage extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Areas>> call, Throwable t) {
-                Toast.makeText(LandingPage.this, "Failed!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LandingPage.this, "Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -199,7 +282,7 @@ public class LandingPage extends AppCompatActivity {
 
         // limit user to select only 8 areas
         if (selectedAreasArray.size() >= 8) {
-            Toast.makeText(LandingPage.this, "You have already chosen 8 areas", Toast.LENGTH_LONG).show();
+            Toast.makeText(LandingPage.this, "You have already chosen 8 areas", Toast.LENGTH_SHORT).show();
         }
         else {
             System.out.println(view.getTag());
@@ -221,7 +304,7 @@ public class LandingPage extends AppCompatActivity {
      */
     public void loadSelectedAreas(List<Integer> selectedAreasArray) {
         landingSelectedTable.removeAllViews();
-        ArrayList<Areas> userChosenAreas = new ArrayList<Areas>();
+        userChosenAreas.clear();
 
         for (int i = 0; i<allDatabaseAreasArray.size() ; i++) {
             for (int j = 0 ; j<selectedAreasArray.size() ; j++) {
@@ -307,4 +390,7 @@ public class LandingPage extends AppCompatActivity {
             landingSelectedTable.addView(tableRowExtra);
         }
     }
+
+
+
 }

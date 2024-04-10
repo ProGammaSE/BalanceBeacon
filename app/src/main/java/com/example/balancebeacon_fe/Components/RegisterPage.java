@@ -2,6 +2,7 @@ package com.example.balancebeacon_fe.Components;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,12 +42,13 @@ public class RegisterPage extends AppCompatActivity {
     ImageView registerContinueButton;
     ImageView registerBackButton;
     TextView registerAlreadyRegistered;
+    Button maleButton, femaleButton;
+    int genderValue = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register_page);
 
         registerNameField = findViewById(R.id.register_name_field);
@@ -58,6 +60,28 @@ public class RegisterPage extends AppCompatActivity {
         registerContinueButton = findViewById(R.id.register_continue_button);
         registerBackButton = findViewById(R.id.register_back_button);
         registerAlreadyRegistered = findViewById(R.id.register_already_registered);
+        maleButton = findViewById(R.id.gender_male);
+        femaleButton = findViewById(R.id.gender_female);
+
+        // clicking on the gender MALE button
+        maleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                femaleButton.setTextColor(Color.parseColor("#FFFFFF"));
+                maleButton.setTextColor(Color.parseColor("#FF8B00"));
+                genderValue = 1;
+            }
+        });
+
+        // clicking on the gender FEMALE button
+        femaleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                maleButton.setTextColor(Color.parseColor("#FFFFFF"));
+                femaleButton.setTextColor(Color.parseColor("#FF8B00"));
+                genderValue = 2;
+            }
+        });
 
         // clicking on the continue button in the Register screen
         registerContinueButton.setOnClickListener(new View.OnClickListener() {
@@ -131,25 +155,40 @@ public class RegisterPage extends AppCompatActivity {
         String confirmPassword = registerConfirmPasswordField.getText().toString();
 
         if (registerName.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Name cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
         }
         else if (registerEmail.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (!registerEmail.contains("@")) {
+            Toast.makeText(RegisterPage.this, "Please enter an valid email", Toast.LENGTH_SHORT).show();
         }
         else if (registerPhone.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Phone number cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Phone number cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (registerPhone.length() < 10) {
+            Toast.makeText(RegisterPage.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+        }
+        else if (genderValue == 0) {
+            Toast.makeText(RegisterPage.this, "Please select your gender", Toast.LENGTH_SHORT).show();
         }
         else if (registerAge.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Age cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Age cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (registerAge.length() < 2 || registerAge.length() > 3) {
+            Toast.makeText(RegisterPage.this, "Please enter an valid age", Toast.LENGTH_SHORT).show();
         }
         else if (registerPassword.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (registerPassword.length() < 5 || registerPassword.length() > 15) {
+            Toast.makeText(RegisterPage.this, "The password must be 5 to 15 long", Toast.LENGTH_SHORT).show();
         }
         else if (confirmPassword.isEmpty()) {
-            Toast.makeText(RegisterPage.this, "Please confirm the password", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Please confirm the password", Toast.LENGTH_SHORT).show();
         }
         else if (!registerPassword.equals(confirmPassword)) {
-            Toast.makeText(RegisterPage.this, "Passwords do not match", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterPage.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
 
             // clean the values inside the password fields
             registerPasswordField.setText("");
@@ -160,7 +199,7 @@ public class RegisterPage extends AppCompatActivity {
             user.setUserName(registerName);
             user.setUserEmail(registerEmail);
             user.setUserPhone(registerPhone);
-            user.setUserGender(1);
+            user.setUserGender(genderValue);
             user.setUserAge(Integer.parseInt(registerAge));
             user.setUserPassword(registerPassword);
             user.setUserStatus(true);
@@ -171,18 +210,18 @@ public class RegisterPage extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     if (response.body().getResponseStatus() == 200) {
-                        Toast.makeText(RegisterPage.this, response.body().getResponseDescription(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
                         showPopUpDialog("Success", "BalanceBeacon user registration");
 
                     }
                     else {
-                        Toast.makeText(RegisterPage.this, response.body().getResponseDescription(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Toast.makeText(RegisterPage.this, "Registration failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterPage.this, "Registration failed", Toast.LENGTH_SHORT).show();
                 }
             });
         }

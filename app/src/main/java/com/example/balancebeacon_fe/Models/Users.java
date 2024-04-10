@@ -1,6 +1,7 @@
 package com.example.balancebeacon_fe.Models;
 
 public class Users {
+    private int userId;
     private String userName;
 
     private String userEmail;
@@ -14,6 +15,14 @@ public class Users {
     private String userPassword;
 
     private boolean userStatus;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;

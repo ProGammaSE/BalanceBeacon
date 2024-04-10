@@ -2,10 +2,11 @@ package com.example.balancebeacon_fe.Models;
 
 import java.util.Date;
 
+
 public class Areas {
     private int areaId;
     private String areaDescription;
-    private Date areaCreatedDate;
+//    private Date areaCreatedDate;
 
     public int getAreaId() {
         return areaId;
@@ -23,11 +24,11 @@ public class Areas {
         this.areaDescription = areaDescription;
     }
 
-    public Date getAreaCreatedDate() {
-        return areaCreatedDate;
-    }
-
-    public void setAreaCreatedDate(Date areaCreatedDate) {
-        this.areaCreatedDate = areaCreatedDate;
-    }
+//    public Date getAreaCreatedDate() {
+//        return areaCreatedDate;
+//    }
+//
+//    public void setAreaCreatedDate(Date areaCreatedDate) {
+//        this.areaCreatedDate = areaCreatedDate;
+//    }
 }
