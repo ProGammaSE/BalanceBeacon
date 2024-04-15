@@ -3,7 +3,8 @@ package com.example.balancebeacon_fe.Models;
 public class AssessmentPayload {
     private int areaId;
     private String areaDescription;
-    private int areaPercentage;
+    private int areaCurrent;
+    private int areaFuture;
     private boolean areaStatus;
 
     public int getAreaId() {
@@ -22,12 +23,20 @@ public class AssessmentPayload {
         this.areaDescription = areaDescription;
     }
 
-    public int getAreaPercentage() {
-        return areaPercentage;
+    public int getAreaCurrent() {
+        return areaCurrent;
     }
 
-    public void setAreaPercentage(int areaPercentage) {
-        this.areaPercentage = areaPercentage;
+    public void setAreaCurrent(int areaCurrent) {
+        this.areaCurrent = areaCurrent;
+    }
+
+    public int getAreaFuture() {
+        return areaFuture;
+    }
+
+    public void setAreaFuture(int areaFuture) {
+        this.areaFuture = areaFuture;
     }
 
     public boolean isAreaStatus() {

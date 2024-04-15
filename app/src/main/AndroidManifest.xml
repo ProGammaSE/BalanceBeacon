@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Components.MainPage"
+            android:exported="false" />
+        <activity
             android:name=".Components.AssessmentPage"
             android:exported="false" />
         <activity

@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface AssessAreaController {
@@ -18,4 +19,7 @@ public interface AssessAreaController {
 
     @GET("/assess/user/areas/all/{userId}")
     Call<UserAssessResponse> getAllUserAreas(@Path("userId") int userId);
+
+    @PUT("/assess/user/areas/update")
+    Call<GeneralResponse> updateUserAreas(@Body UserAssessResponse userAssessUpdate);
 }

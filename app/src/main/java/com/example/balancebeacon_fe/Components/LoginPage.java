@@ -44,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         loginUsername = findViewById(R.id.login_email_field);
         loginPassword = findViewById(R.id.login_password_field);
         loginCreateNewAccount = findViewById(R.id.login_create_new_account);
-        loginBackButton = findViewById(R.id.assessments_back_button);
+        loginBackButton = findViewById(R.id.main_back_button);
 
         // button click
         loginLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +165,7 @@ public class LoginPage extends AppCompatActivity {
                         System.out.println(t.getMessage());
                         System.out.println(t.getCause());
                         t.printStackTrace();
-                        Toast.makeText(LoginPage.this, "Login failed!!aaadd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPage.this, "Login failed!", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (Exception ex) {

@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/continue_button_image" />
 
     <ImageView
-        android:id="@+id/assessments_dot_menu"
+        android:id="@+id/main_dot_menu"
         android:layout_width="28dp"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/assessments_back_button"
+        android:id="@+id/main_back_button"
         android:layout_width="46dp"
         android:layout_height="35dp"
         android:layout_marginStart="4dp"
@@ -45,8 +45,8 @@
         android:text="Assessments"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/assessments_dot_menu"
-        app:layout_constraintStart_toEndOf="@+id/assessments_back_button"
+        app:layout_constraintEnd_toStartOf="@+id/main_dot_menu"
+        app:layout_constraintStart_toEndOf="@+id/main_back_button"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assessments_back_button" />
+        app:layout_constraintTop_toBottomOf="@+id/main_back_button" />
 
     <LinearLayout
         android:id="@+id/assessment_layout"

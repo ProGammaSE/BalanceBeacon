@@ -8,7 +8,7 @@
     tools:context=".Components.LoginPage">
 
     <ImageView
-        android:id="@+id/assessments_back_button"
+        android:id="@+id/main_back_button"
         android:layout_width="46dp"
         android:layout_height="35dp"
         android:layout_marginStart="4dp"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/back_button_24" />
 
     <ImageView
-        android:id="@+id/assessments_dot_menu"
+        android:id="@+id/main_dot_menu"
         android:layout_width="28dp"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
@@ -35,8 +35,8 @@
         android:text="Login"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/assessments_dot_menu"
-        app:layout_constraintStart_toEndOf="@+id/assessments_back_button"
+        app:layout_constraintEnd_toStartOf="@+id/main_dot_menu"
+        app:layout_constraintStart_toEndOf="@+id/main_back_button"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
