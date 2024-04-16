@@ -92,9 +92,6 @@ public class LandingPage extends AppCompatActivity {
             public void onClick(View view) {
                 if (selectedAreasArray.isEmpty()) {
                     Toast.makeText(LandingPage.this, "Choose at least one area", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(LandingPage.this, AssessmentPage.class);
-                    startActivity(intent);
                 }
                 else {
                     AssessAreaRequest assessAreaRequest = new AssessAreaRequest();

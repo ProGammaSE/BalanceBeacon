@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    <group android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="menu_main_page"-->
+<!--            android:title="Main Page"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+
+<!--        <item-->
+<!--            android:id="menu_assessments"-->
+<!--            android:title="Assessments"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+
+<!--        <item-->
+<!--            android:id="menu_my_goals"-->
+<!--            android:title="My Goals"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+
+<!--        <item-->
+<!--            android:id="menu_achievments"-->
+<!--            android:title="Achievments"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+
+<!--        <item-->
+<!--            android:id="menu_coaching_mentoring"-->
+<!--            android:title="Coaching &amp; Mentoring"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+
+<!--        <item-->
+<!--            android:id="menu_feedback"-->
+<!--            android:title="Feedback"-->
+<!--            android:icon="@drawable/arrow_back_icon"/>-->
+<!--    </group>-->
+
+</menu>

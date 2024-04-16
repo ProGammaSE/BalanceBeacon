@@ -166,7 +166,7 @@ public class RegisterPage extends AppCompatActivity {
         else if (registerPhone.isEmpty()) {
             Toast.makeText(RegisterPage.this, "Phone number cannot be empty", Toast.LENGTH_SHORT).show();
         }
-        else if (registerPhone.length() < 10) {
+        else if (registerPhone.length() < 11) {
             Toast.makeText(RegisterPage.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
         }
         else if (genderValue == 0) {
@@ -175,11 +175,17 @@ public class RegisterPage extends AppCompatActivity {
         else if (registerAge.isEmpty()) {
             Toast.makeText(RegisterPage.this, "Age cannot be empty", Toast.LENGTH_SHORT).show();
         }
-        else if (registerAge.length() < 2 || registerAge.length() > 3) {
-            Toast.makeText(RegisterPage.this, "Please enter an valid age", Toast.LENGTH_SHORT).show();
+        else if (Integer.parseInt(registerAge) < 18 || Integer.parseInt(registerAge) > 40) {
+            Toast.makeText(RegisterPage.this, "Age has to be between 18 & 40", Toast.LENGTH_SHORT).show();
         }
         else if (registerPassword.isEmpty()) {
             Toast.makeText(RegisterPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (!registerPassword.matches(".*\\d.*")) {
+            Toast.makeText(RegisterPage.this, "Password should have at least 1 number", Toast.LENGTH_SHORT).show();
+        }
+        else if (!registerPassword.matches(".*[A-Z].*")) {
+            Toast.makeText(RegisterPage.this, "Password should have at least 1 capital letter", Toast.LENGTH_SHORT).show();
         }
         else if (registerPassword.length() < 5 || registerPassword.length() > 15) {
             Toast.makeText(RegisterPage.this, "The password must be 5 to 15 long", Toast.LENGTH_SHORT).show();

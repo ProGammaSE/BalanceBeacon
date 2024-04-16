@@ -1,7 +1,11 @@
 package com.example.balancebeacon_fe.Components;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.balancebeacon_fe.Controllers.AssessAreaController;
 import com.example.balancebeacon_fe.Models.GeneralResponse;
@@ -46,9 +51,46 @@ public class AssessmentPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(AssessmentPage.this, "Assessment updated", Toast.LENGTH_SHORT).show();
-
+//                Intent intent = new Intent(AssessmentPage.this, MainPage.class);
+//                startActivity(intent);
             }
         });
+    }
+
+    private void showPopUpDialog(String popUpTitle, String popUpDescription) {
+        // declaring parameters
+        ConstraintLayout alertPopUpSuccess = findViewById(R.id.alertPopUpSuccess);
+        View view = LayoutInflater.from(AssessmentPage.this).inflate(R.layout.alert_pop_up_success, alertPopUpSuccess);
+        Button popUpButton = view.findViewById(R.id.alert_success_done);
+        TextView alertSuccessTitle = view.findViewById(R.id.alert_success_title);
+        TextView alertSuccessDescription = view.findViewById(R.id.alert_success_description);
+
+
+        // setting the given title and description
+        alertSuccessTitle.setText(popUpTitle);
+        alertSuccessDescription.setText(popUpDescription);
+
+        // build the pop up dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(AssessmentPage.this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        // define the action of "Done" button in the pop up dialog
+        popUpButton.findViewById(R.id.alert_success_done).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // below lines executes when clicking on the "Done" button in the pop up window
+                // Navigates to the Landing page once clicked
+                alertDialog.dismiss();
+                Intent intent = new Intent(AssessmentPage.this, MainPage.class);
+                startActivity(intent);
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 
     public void loadQuestions() {
@@ -174,6 +216,7 @@ public class AssessmentPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
                 Toast.makeText(AssessmentPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
+                showPopUpDialog("Success", "Areas updated successfully");
             }
 
             @Override
