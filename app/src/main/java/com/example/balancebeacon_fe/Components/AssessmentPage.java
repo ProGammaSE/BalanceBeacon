@@ -24,6 +24,8 @@ import com.example.balancebeacon_fe.Models.UserAssessResponse;
 import com.example.balancebeacon_fe.R;
 import com.example.balancebeacon_fe.Shared.RetrofitClient;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +43,7 @@ public class AssessmentPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Assessments");
 
         assessmentLayout = findViewById(R.id.assessment_layout);
         assessmentContinueButton = findViewById(R.id.assessment_continue_button);
@@ -64,7 +67,6 @@ public class AssessmentPage extends AppCompatActivity {
         Button popUpButton = view.findViewById(R.id.alert_success_done);
         TextView alertSuccessTitle = view.findViewById(R.id.alert_success_title);
         TextView alertSuccessDescription = view.findViewById(R.id.alert_success_description);
-
 
         // setting the given title and description
         alertSuccessTitle.setText(popUpTitle);
@@ -101,7 +103,14 @@ public class AssessmentPage extends AppCompatActivity {
                 TextView questionTitle = view.findViewById(R.id.question_title);
                 questionTitle.setText(userAssessResponse.getAssessmentPayloads().get(areaLoopCount).getAreaDescription());
 
-                // define percentage numbers in the question qindow
+                // define questions
+                TextView question01 = view.findViewById(R.id.question_01);
+                TextView question02 = view.findViewById(R.id.question_02);
+
+                question01.setText("How do you feel about your " + userAssessResponse.getAssessmentPayloads().get(areaLoopCount).getAreaDescription() + " right now?");
+                question02.setText("How do you feel about your " + userAssessResponse.getAssessmentPayloads().get(areaLoopCount).getAreaDescription() +" in the future?");
+
+                // define percentage numbers in the question window
                 TextView currentPercentage = view.findViewById(R.id.question_percentage_01);
                 TextView futurePercentage = view.findViewById(R.id.question_percentage_02);
 

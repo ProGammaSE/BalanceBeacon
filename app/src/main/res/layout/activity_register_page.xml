@@ -1,271 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Components.RegisterPage">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/register_back_button"
-        android:layout_width="46dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_button_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Components.RegisterPage">
 
-    <TextView
-        android:id="@+id/register_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/sf_display_semibold"
-        android:text="Register"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/register_dot_menu"
-        app:layout_constraintStart_toEndOf="@+id/register_back_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/register_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Name *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/register_dot_menu"
-        android:layout_width="28dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/page_dots_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/register_name_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_name_text" />
 
-    <TextView
-        android:id="@+id/register_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Name *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_back_button" />
+        <TextView
+            android:id="@+id/register_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Email *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_name_field" />
 
-    <EditText
-        android:id="@+id/register_name_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_name_text" />
+        <EditText
+            android:id="@+id/register_email_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_email_text" />
 
-    <TextView
-        android:id="@+id/register_email_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Email *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_name_field" />
+        <TextView
+            android:id="@+id/register_phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Phone *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_email_field" />
 
-    <EditText
-        android:id="@+id/register_email_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_email_text" />
+        <EditText
+            android:id="@+id/register_phone_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_phone_text" />
 
-    <TextView
-        android:id="@+id/register_phone_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Phone *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_email_field" />
+        <TextView
+            android:id="@+id/register_gender_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Gender *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_phone_field" />
 
-    <EditText
-        android:id="@+id/register_phone_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_phone_text" />
+        <TextView
+            android:id="@+id/register_age_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Age *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/gender_male" />
 
-    <TextView
-        android:id="@+id/register_gender_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Gender *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_phone_field" />
+        <EditText
+            android:id="@+id/register_age_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_age_text" />
 
-    <TextView
-        android:id="@+id/register_age_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Age *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender_male" />
+        <TextView
+            android:id="@+id/register_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Password *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_age_field" />
 
-    <EditText
-        android:id="@+id/register_age_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_age_text" />
+        <EditText
+            android:id="@+id/register_password_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_password_text" />
 
-    <TextView
-        android:id="@+id/register_password_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Password *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_age_field" />
+        <TextView
+            android:id="@+id/register_confirm_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/sf_dispaly_medium"
+            android:text="Confirm Password *"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
 
-    <EditText
-        android:id="@+id/register_password_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password_text" />
+        <EditText
+            android:id="@+id/register_confirm_password_field"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_field_design"
+            android:ems="10"
+            android:fontFamily="@font/sf_display_medium"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_text" />
 
-    <TextView
-        android:id="@+id/register_confirm_password_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/sf_dispaly_medium"
-        android:text="Confirm Password *"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
+        <ImageView
+            android:id="@+id/register_continue_button"
+            android:layout_width="153dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_field"
+            app:srcCompat="@drawable/continue_button_image" />
 
-    <EditText
-        android:id="@+id/register_confirm_password_field"
-        android:layout_width="433dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_field_design"
-        android:ems="10"
-        android:fontFamily="@font/sf_display_medium"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_text" />
+        <TextView
+            android:id="@+id/register_already_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/sf_display_semibold"
+            android:text="Already registered?"
+            android:textColor="@color/bb_green"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/register_continue_button"
+            app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_field" />
 
-    <ImageView
-        android:id="@+id/register_continue_button"
-        android:layout_width="167dp"
-        android:layout_height="89dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/continue_button_image" />
+        <Button
+            android:id="@+id/gender_male"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/gender_circle"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:fontFamily="@font/sf_display_medium"
 
-    <TextView
-        android:id="@+id/register_already_registered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
-        android:fontFamily="@font/sf_display_semibold"
-        android:text="Already registered?"
-        android:textColor="@color/bb_green"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/register_continue_button" />
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="M"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
 
-    <Button
-        android:id="@+id/gender_male"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/gender_circle"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:fontFamily="@font/sf_display_medium"
+        <Button
+            android:id="@+id/gender_female"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/gender_circle"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:fontFamily="@font/sf_display_medium"
+            android:gravity="center"
+            android:text="F"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/gender_male"
+            app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
 
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:text="M"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1065dp"
+            app:layout_constraintGuide_percent="0.99" />
 
-    <Button
-        android:id="@+id/gender_female"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/gender_circle"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:fontFamily="@font/sf_display_medium"
-        android:gravity="center"
-        android:text="F"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/gender_male"
-        app:layout_constraintTop_toBottomOf="@+id/register_gender_text" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="128dp"
+            app:layout_constraintGuide_percent="0.02" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

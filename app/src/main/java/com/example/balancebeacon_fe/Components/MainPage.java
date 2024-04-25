@@ -1,14 +1,19 @@
 package com.example.balancebeacon_fe.Components;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,6 +32,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,17 +43,38 @@ public class MainPage extends AppCompatActivity {
     // global variables
     PieChart pieChart;
     TableLayout tableLayout;
-    UserAssessResponse userAssessResponse = new UserAssessResponse();
 
+    ImageView mainPageContinueButton;
+    UserAssessResponse userAssessResponse = new UserAssessResponse();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("BalanceBeacon");
 
         pieChart = findViewById(R.id.main_piechart);
         tableLayout = findViewById(R.id.main_table_layout);
+        mainPageContinueButton = findViewById(R.id.main_page_continue_button);
         getAllUserAreas();
+
+        // this function works when clicking on the continue button
+        mainPageContinueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, TipsPage.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    // this function works when clicking on the Menu icon
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
     public void getAllUserAreas() {
@@ -67,9 +94,16 @@ public class MainPage extends AppCompatActivity {
                 if (response.body().getResponseCode() == 200) {
                     Toast.makeText(MainPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
                     userAssessResponse = response.body();
-                    assert response.body() != null;
                     loadPieChart();
                     loadTable();
+
+                    // set assessment id in the cache memory
+                    SharedPreferences sharedpreferences = getSharedPreferences("balanceBeacon",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putInt("assessmentId", response.body().getAssessmentId());
+                    editor.apply();
+
+                    System.out.println("Assessment ID: " + sharedpreferences.getInt("assessmentId", 0));
                 }
                 else {
                     Toast.makeText(MainPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
@@ -89,7 +123,8 @@ public class MainPage extends AppCompatActivity {
         int areaLoopCount = userAssessResponse.getAssessmentPayloads().size();
 
         for (int i=0 ; i<areaLoopCount ; i++) {
-            entries.add(new PieEntry(userAssessResponse.getAssessmentPayloads().get(i).getAreaCurrent(), userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription()));
+
+            entries.add(new PieEntry((userAssessResponse.getAssessmentPayloads().get(i).getAreaFuture() - userAssessResponse.getAssessmentPayloads().get(i).getAreaCurrent()), userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription()));
         }
 
         PieDataSet pieDataSet = new PieDataSet(entries, "Areas");
@@ -98,7 +133,7 @@ public class MainPage extends AppCompatActivity {
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
 
-        pieChart.getDescription().setEnabled(false);
+        pieChart.getDescription().setEnabled(true);
         pieChart.animateY(1000);
         pieChart.invalidate();
     }

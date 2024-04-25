@@ -14,7 +14,7 @@ public class Users {
 
     private String userPassword;
 
-    private boolean userStatus;
+    private int userStatus;
 
     public int getUserId() {
         return userId;
@@ -72,11 +72,11 @@ public class Users {
         this.userPassword = userPassword;
     }
 
-    public boolean isUserStatus() {
+    public int getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(boolean userStatus) {
+    public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
 }

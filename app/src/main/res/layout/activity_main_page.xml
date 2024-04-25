@@ -1,113 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Components.MainPage">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/main_dot_menu"
-        android:layout_width="28dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/page_dots_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/main_back_button"
-        android:layout_width="46dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_button_24" />
-
-    <TextView
-        android:id="@+id/assessments_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/sf_display_semibold"
-        android:text="BalanceBeacon"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/main_piechart"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assessments_header" />
+        android:layout_height="match_parent"
+        tools:context=".Components.MainPage">
 
-    <TableLayout
-        android:id="@+id/main_table_layout"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/main_piechart">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/main_piechart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TableRow
-            android:background="@color/bb_green">
+        <TableLayout
+            android:id="@+id/main_table_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/main_piechart">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Area"
-                android:textSize="18sp"
-                android:fontFamily="@font/sf_display_bold"
-                android:padding="10sp"
-                android:layout_weight="4"
-                android:textColor="@color/white"
-                />
+            <TableRow
+                android:background="@color/bb_green">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Current"
-                android:textSize="18sp"
-                android:fontFamily="@font/sf_display_bold"
-                android:padding="10sp"
-                android:layout_weight="4"
-                android:textColor="@color/white"
-                />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Area"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Future"
-                android:textSize="18sp"
-                android:fontFamily="@font/sf_display_bold"
-                android:padding="10sp"
-                android:layout_weight="4"
-                android:textColor="@color/white"
-                />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Gap"
-                android:textSize="18sp"
-                android:fontFamily="@font/sf_display_bold"
-                android:padding="10sp"
-                android:layout_weight="4"
-                android:textColor="@color/white"
-                />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Future"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    />
 
-        </TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Gap"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    />
 
-    </TableLayout>
+            </TableRow>
+
+        </TableLayout>
+
+        <ImageView
+            android:id="@+id/main_page_continue_button"
+            android:layout_width="153dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/continue_button_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_table_layout" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+

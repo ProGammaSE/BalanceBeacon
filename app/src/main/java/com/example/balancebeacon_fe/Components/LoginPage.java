@@ -22,6 +22,8 @@ import com.example.balancebeacon_fe.Models.UserResponse;
 import com.example.balancebeacon_fe.R;
 import com.example.balancebeacon_fe.Shared.RetrofitClient;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,18 +35,17 @@ public class LoginPage extends AppCompatActivity {
     EditText loginUsername;
     EditText loginPassword;
     TextView loginCreateNewAccount;
-    ImageView loginBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Login");
 
         loginLoginButton = findViewById(R.id.login_login_button);
         loginUsername = findViewById(R.id.login_email_field);
         loginPassword = findViewById(R.id.login_password_field);
         loginCreateNewAccount = findViewById(R.id.login_create_new_account);
-        loginBackButton = findViewById(R.id.main_back_button);
 
         // button click
         loginLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -63,21 +64,12 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // clicking on the back button
-        loginBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this, WelcomePage.class);
-                startActivity(intent);
-            }
-        });
     }
 
     /**
      * pop up window to show the result of requests.
      */
-    private void showPopUpDialog(String popUpTitle, String popUpDescription) {
+    private void showPopUpDialog(String popUpTitle, String popUpDescription, int status) {
         // declaring parameters
         ConstraintLayout alertPopUpSuccess = findViewById(R.id.alertPopUpSuccess);
         View view = LayoutInflater.from(LoginPage.this).inflate(R.layout.alert_pop_up_success, alertPopUpSuccess);
@@ -103,8 +95,17 @@ public class LoginPage extends AppCompatActivity {
                 // below lines executes when clicking on the "Done" button in the pop up window
                 // Navigates to the Landing page once clicked
                 alertDialog.dismiss();
-                Intent intent = new Intent(LoginPage.this, LandingPage.class);
-                startActivity(intent);
+
+                if (status == 1) {
+                    // the user is new to the system and does not have any assessments yet
+                    Intent intent = new Intent(LoginPage.this, LandingPage.class);
+                    startActivity(intent);
+                }
+                else {
+                    // the user is old to the system and there are assessments completed
+                    Intent intent = new Intent(LoginPage.this, MainPage.class);
+                    startActivity(intent);
+                }
             }
         });
         if (alertDialog.getWindow() != null) {
@@ -152,7 +153,7 @@ public class LoginPage extends AppCompatActivity {
                             editor.apply();
 
                             Toast.makeText(LoginPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
-                            showPopUpDialog("Success",  sharedpreferences.getString("userName", "User") + " logged in successfully");
+                            showPopUpDialog("Success",  sharedpreferences.getString("userName", "User") + " logged in successfully", response.body().getUsers().getUserStatus());
 
                         }
                         else {

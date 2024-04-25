@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!--    <group android:checkableBehavior="single">-->
-<!--        <item-->
-<!--            android:id="menu_main_page"-->
-<!--            android:title="Main Page"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
+    <item
+        android:id="@+id/menu_main_page"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Main Page"/>
 
-<!--        <item-->
-<!--            android:id="menu_assessments"-->
-<!--            android:title="Assessments"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
+    <item
+        android:id="@+id/menu_assessments"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Assessments" />
 
-<!--        <item-->
-<!--            android:id="menu_my_goals"-->
-<!--            android:title="My Goals"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
+    <item
+        android:id="@+id/menu_my_goals"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="My Goals" />
 
-<!--        <item-->
-<!--            android:id="menu_achievments"-->
-<!--            android:title="Achievments"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
+    <item
+        android:id="@+id/menu_achievments"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Achievments" />
 
-<!--        <item-->
-<!--            android:id="menu_coaching_mentoring"-->
-<!--            android:title="Coaching &amp; Mentoring"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
+    <item
+        android:id="@+id/menu_coaching_mentoring"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Coaching &amp; Mentoring" />
 
-<!--        <item-->
-<!--            android:id="menu_feedback"-->
-<!--            android:title="Feedback"-->
-<!--            android:icon="@drawable/arrow_back_icon"/>-->
-<!--    </group>-->
+    <item
+        android:id="@+id/menu_feedback"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Feedback" />
 
+    <item
+        android:id="@+id/menu_lohout"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Logout" />
 </menu>

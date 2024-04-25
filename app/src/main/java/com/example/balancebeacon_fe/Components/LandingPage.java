@@ -14,24 +14,20 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.balancebeacon_fe.Controllers.AreaController;
 import com.example.balancebeacon_fe.Controllers.AssessAreaController;
-import com.example.balancebeacon_fe.Controllers.UserController;
 import com.example.balancebeacon_fe.Models.Areas;
 import com.example.balancebeacon_fe.Models.AssessAreaRequest;
 import com.example.balancebeacon_fe.Models.GeneralResponse;
-import com.example.balancebeacon_fe.Models.UserResponse;
 import com.example.balancebeacon_fe.R;
-import com.example.balancebeacon_fe.Shared.Enums;
 import com.example.balancebeacon_fe.Shared.RetrofitClient;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +39,6 @@ public class LandingPage extends AppCompatActivity {
     TableLayout landingChooseTable;
     TableLayout landingSelectedTable;
     ImageView landingPageRefresh;
-    ImageView landingBackButton;
     ImageView landingPageContinueButton;
     List<Integer> selectedAreasArray = new ArrayList<Integer>();
     List<Areas> allDatabaseAreasArray = new ArrayList<Areas>();
@@ -53,12 +48,12 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("BalanceBeacon");
 
 //        landingChooseContainer = findViewById(R.id.landing_choose_container);
         landingChooseTable = findViewById(R.id.landing_choose_table);
         landingSelectedTable = findViewById(R.id.landing_selected_table);
         landingPageRefresh = findViewById(R.id.landing_page_refresh_button);
-        landingBackButton = findViewById(R.id.landing_back_button);
         landingPageContinueButton = findViewById(R.id.landing_continue_button);
         landingSelectedTable.setVisibility(View.INVISIBLE);
 
@@ -74,15 +69,6 @@ public class LandingPage extends AppCompatActivity {
                 selectedAreasArray.clear();
                 userChosenAreas.clear();
                 loadChooseAreas();
-            }
-        });
-
-        // clicking on the back button
-        landingBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LandingPage.this, LoginPage.class);
-                startActivity(intent);
             }
         });
 
@@ -215,7 +201,7 @@ public class LandingPage extends AppCompatActivity {
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                clickOnChooseAreaTable(view, Enums.DoInvisible);
+                                clickOnChooseAreaTable(view, 0);
                             }
                         });
 
@@ -252,7 +238,7 @@ public class LandingPage extends AppCompatActivity {
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                clickOnChooseAreaTable(view, Enums.DoInvisible);
+                                clickOnChooseAreaTable(view, 0);
                             }
                         });
                         extraAreaCounter++;
@@ -271,7 +257,7 @@ public class LandingPage extends AppCompatActivity {
     // this function runs when clicking on the each area
     // change the color of the area button
     // get the ID of the clicked area button
-    public void clickOnChooseAreaTable(View view, Enums action) {
+    public void clickOnChooseAreaTable(View view, int visibility) {
 
         // set visible the refresh button
         landingPageRefresh.setVisibility(View.VISIBLE);
@@ -283,7 +269,7 @@ public class LandingPage extends AppCompatActivity {
         }
         else {
             System.out.println(view.getTag());
-            if (action == Enums.DoInvisible) {
+            if (visibility == 0) {
                 selectedAreasArray.add((Integer) view.getTag());
                 view.setVisibility(View.INVISIBLE);
                 System.out.println(selectedAreasArray);

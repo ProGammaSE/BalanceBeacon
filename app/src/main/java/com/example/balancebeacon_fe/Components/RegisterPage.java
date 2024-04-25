@@ -26,6 +26,8 @@ import com.example.balancebeacon_fe.Models.Users;
 import com.example.balancebeacon_fe.R;
 import com.example.balancebeacon_fe.Shared.RetrofitClient;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +42,6 @@ public class RegisterPage extends AppCompatActivity {
     EditText registerPasswordField;
     EditText registerConfirmPasswordField;
     ImageView registerContinueButton;
-    ImageView registerBackButton;
     TextView registerAlreadyRegistered;
     Button maleButton, femaleButton;
     int genderValue = 0;
@@ -50,6 +51,7 @@ public class RegisterPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Register");
 
         registerNameField = findViewById(R.id.register_name_field);
         registerEmailField = findViewById(R.id.register_email_field);
@@ -58,7 +60,6 @@ public class RegisterPage extends AppCompatActivity {
         registerPasswordField = findViewById(R.id.register_password_field);
         registerConfirmPasswordField = findViewById(R.id.register_confirm_password_field);
         registerContinueButton = findViewById(R.id.register_continue_button);
-        registerBackButton = findViewById(R.id.register_back_button);
         registerAlreadyRegistered = findViewById(R.id.register_already_registered);
         maleButton = findViewById(R.id.gender_male);
         femaleButton = findViewById(R.id.gender_female);
@@ -88,15 +89,6 @@ public class RegisterPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickOnTheRegister();
-            }
-        });
-
-        // clicking on the back button
-        registerBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterPage.this, WelcomePage.class);
-                startActivity(intent);
             }
         });
 
@@ -208,7 +200,7 @@ public class RegisterPage extends AppCompatActivity {
             user.setUserGender(genderValue);
             user.setUserAge(Integer.parseInt(registerAge));
             user.setUserPassword(registerPassword);
-            user.setUserStatus(true);
+            user.setUserStatus(1);
 
             UserController userController = RetrofitClient.getRetrofitInstance().create(UserController.class);
             Call<UserResponse> call = userController.registerUser(user);

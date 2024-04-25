@@ -9,15 +9,18 @@
 
     <TextView
         android:id="@+id/area_linear_text"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:height="30dp"
+        android:padding="5dp"
         android:background="@drawable/area_button_design_choose"
         android:fontFamily="@font/sf_dispaly_medium"
-        android:textSize="14dp"
         android:gravity="center"
-        android:maxWidth="120dp"
-        android:height="30dp"
-        android:text="Health &amp; Fitness"
+        android:minWidth="90dp"
+        android:maxWidth="110dp"
+        android:text="Love.  Family.  Kid"
         android:textAllCaps="false"
-        android:textColor="@color/bb_green" />
+        android:textColor="@color/bb_green"
+        android:textSize="10dp" />
 </RelativeLayout>

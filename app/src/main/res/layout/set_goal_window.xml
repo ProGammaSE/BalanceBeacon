@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Components.SetGoalPage">
+
+    <TextView
+        android:id="@+id/set_goal_window_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/sf_display_bold"
+        android:text="Your selected task"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/set_goal_your_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/sf_display_bold"
+        android:text="Set your goal"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_tip_desc" />
+
+    <TextView
+        android:id="@+id/set_goal_tip_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/sf_dispaly_medium"
+        android:text="Create a LinkedIn profile to start building a professional online presence"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_window_task" />
+
+    <TextView
+        android:id="@+id/set_goal_box1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/goal_design"
+        android:fontFamily="@font/sf_dsiplay_light"
+        android:gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:padding="10dp"
+        android:text="1 Day"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_your_goal" />
+
+    <TextView
+        android:id="@+id/set_goal_box2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/goal_design"
+        android:fontFamily="@font/sf_dsiplay_light"
+        android:gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:padding="10dp"
+        android:text="1 Week"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/set_goal_box1"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_your_goal" />
+
+    <TextView
+        android:id="@+id/set_goal_box3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/goal_design"
+        android:fontFamily="@font/sf_dsiplay_light"
+        android:gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:padding="10dp"
+        android:text="10 Days"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/set_goal_box2"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_your_goal" />
+
+    <TextView
+        android:id="@+id/set_goal_box4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/goal_design"
+        android:fontFamily="@font/sf_dsiplay_light"
+        android:gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:padding="10dp"
+        android:text="1 Month"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_box1" />
+
+    <TextView
+        android:id="@+id/set_goal_box5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/goal_design"
+        android:fontFamily="@font/sf_dsiplay_light"
+        android:gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:padding="10dp"
+        android:text="Custom"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/set_goal_box4"
+        app:layout_constraintTop_toBottomOf="@+id/set_goal_box2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
