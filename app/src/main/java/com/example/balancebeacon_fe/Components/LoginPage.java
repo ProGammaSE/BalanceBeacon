@@ -41,7 +41,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Login");
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loginLoginButton = findViewById(R.id.login_login_button);
         loginUsername = findViewById(R.id.login_email_field);
         loginPassword = findViewById(R.id.login_password_field);

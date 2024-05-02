@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +17,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -49,7 +53,7 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
         Objects.requireNonNull(getSupportActionBar()).setTitle("BalanceBeacon");
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        landingChooseContainer = findViewById(R.id.landing_choose_container);
         landingChooseTable = findViewById(R.id.landing_choose_table);
         landingSelectedTable = findViewById(R.id.landing_selected_table);
@@ -115,6 +119,44 @@ public class LandingPage extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // this function works when clicking on the Menu icon
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    // when clicks on the button in the menu, this function will routes to the relevant page
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_main_page) {
+            Intent intent = new Intent(LandingPage.this, MainPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_assessments) {
+            Intent intent = new Intent(LandingPage.this, AssessmentPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_my_goals) {
+            Intent intent = new Intent(LandingPage.this, MyGoalsPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_achievments) {
+            Intent intent = new Intent(LandingPage.this, AchiementsPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_coaching_mentoring) {
+            Intent intent = new Intent(LandingPage.this, CoachesPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_feedback) {
+            Intent intent = new Intent(LandingPage.this, FeedbackPage.class);
+            startActivity(intent);
+        } else if (itemId == R.id.menu_logout) {
+            Intent intent = new Intent(LandingPage.this, LoginPage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

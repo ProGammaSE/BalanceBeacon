@@ -52,7 +52,7 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Register");
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerNameField = findViewById(R.id.register_name_field);
         registerEmailField = findViewById(R.id.register_email_field);
         registerPhoneField = findViewById(R.id.register_phone_field);
@@ -155,6 +155,9 @@ public class RegisterPage extends AppCompatActivity {
         else if (!registerEmail.contains("@")) {
             Toast.makeText(RegisterPage.this, "Please enter an valid email", Toast.LENGTH_SHORT).show();
         }
+        else if (!registerEmail.contains(" ")) {
+            Toast.makeText(RegisterPage.this, "Please enter an valid email", Toast.LENGTH_SHORT).show();
+        }
         else if (registerPhone.isEmpty()) {
             Toast.makeText(RegisterPage.this, "Phone number cannot be empty", Toast.LENGTH_SHORT).show();
         }
@@ -172,6 +175,9 @@ public class RegisterPage extends AppCompatActivity {
         }
         else if (registerPassword.isEmpty()) {
             Toast.makeText(RegisterPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (registerPassword.contains(" ")) {
+            Toast.makeText(RegisterPage.this, "Password cannot have spaces", Toast.LENGTH_SHORT).show();
         }
         else if (!registerPassword.matches(".*\\d.*")) {
             Toast.makeText(RegisterPage.this, "Password should have at least 1 number", Toast.LENGTH_SHORT).show();

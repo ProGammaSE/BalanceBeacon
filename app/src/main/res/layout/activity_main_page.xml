@@ -21,64 +21,77 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        <com.github.mikephil.charting.charts.RadarChart-->
+<!--            android:id="@+id/main_radar_chart"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="500dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
         <TableLayout
-            android:id="@+id/main_table_layout"
+            android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/main_piechart">
 
-            <TableRow
-                android:background="@color/bb_green">
+            <TableRow android:background="@color/bb_green">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
                     android:text="Area"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/sf_display_bold"
-                    android:padding="10sp"
-                    android:layout_weight="4"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
                     android:text="Current"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/sf_display_bold"
-                    android:padding="10sp"
-                    android:layout_weight="4"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/sf_display_bold"
+                    android:padding="10sp"
                     android:text="Future"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/sf_display_bold"
-                    android:padding="10sp"
-                    android:layout_weight="4"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Gap"
-                    android:textSize="18sp"
+                    android:layout_weight="4"
                     android:fontFamily="@font/sf_display_bold"
                     android:padding="10sp"
-                    android:layout_weight="4"
+                    android:text="Gap"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="18sp" />
 
             </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/main_table_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
         </TableLayout>
 
@@ -88,6 +101,7 @@
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/continue_button_image"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_table_layout" />
 

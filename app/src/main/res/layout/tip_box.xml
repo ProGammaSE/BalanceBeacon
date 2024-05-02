@@ -12,17 +12,17 @@
         android:id="@+id/tip_box_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/tip_box_design">
+        android:background="@drawable/tip_box_design"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tip_box_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Family. Love. Kids"
+            android:fontFamily="@font/sf_display_bold"
             android:padding="5dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/sf_display_bold"/>
+            android:text="Family. Love. Kids"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tip_box_description"
@@ -31,7 +31,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:height="40dp"
+            android:height="47dp"
             android:drawableEnd="@drawable/add_goal_icon"
             android:fontFamily="@font/sf_dispaly_medium"
             android:gravity="start"
@@ -41,30 +41,29 @@
             android:text="Seek out mentors who can guide personal and professional development"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="12sp" />
-
+            android:textSize="15sp" />
 
 
     </LinearLayout>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tip_box_description"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:height="40dp"-->
-<!--        android:background="@drawable/tip_box_design"-->
-<!--        android:drawableEnd="@drawable/add_goal_icon"-->
-<!--        android:fontFamily="@font/sf_dispaly_medium"-->
-<!--        android:gravity="start"-->
-<!--        android:paddingStart="8dp"-->
-<!--        android:paddingTop="3dp"-->
-<!--        android:paddingEnd="8dp"-->
-<!--        android:text="Seek out mentors who can guide personal and professional development"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="12sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tip_box_description"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:height="40dp"-->
+    <!--        android:background="@drawable/tip_box_design"-->
+    <!--        android:drawableEnd="@drawable/add_goal_icon"-->
+    <!--        android:fontFamily="@font/sf_dispaly_medium"-->
+    <!--        android:gravity="start"-->
+    <!--        android:paddingStart="8dp"-->
+    <!--        android:paddingTop="3dp"-->
+    <!--        android:paddingEnd="8dp"-->
+    <!--        android:text="Seek out mentors who can guide personal and professional development"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="12sp" />-->
 
 </RelativeLayout>

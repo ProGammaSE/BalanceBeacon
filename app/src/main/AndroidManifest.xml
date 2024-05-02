@@ -18,14 +18,36 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Components.SetGoalPage"
+            android:name=".Components.FeedbackPage"
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
+        <activity
+            android:name=".Components.CoachesPage"
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
+        <activity
+            android:name=".Components.AchiementsPage"
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
+        <activity
+            android:name=".Components.MyGoalsPage"
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
+        <activity
+            android:name=".Components.TestComponent"
             android:exported="false" />
+        <activity
+            android:name=".Components.SetGoalPage"
+            android:exported="false"
+            android:parentActivityName=".Components.TipsPage"/>
         <activity
             android:name=".Components.TipsPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
         <activity
             android:name=".Components.MainPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage"/>
         <activity
             android:name=".Components.AssessmentPage"
             android:exported="false" />
@@ -34,10 +56,12 @@
             android:exported="false" />
         <activity
             android:name=".Components.LoginPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Components.WelcomePage"/>
         <activity
             android:name=".Components.RegisterPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Components.WelcomePage" />
         <activity
             android:name=".Components.WelcomePage"
             android:exported="true">

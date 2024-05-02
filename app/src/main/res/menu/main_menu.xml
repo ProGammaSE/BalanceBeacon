@@ -32,7 +32,7 @@
         android:title="Feedback" />
 
     <item
-        android:id="@+id/menu_lohout"
+        android:id="@+id/menu_logout"
         android:icon="@drawable/arrow_back_icon"
         android:title="Logout" />
 </menu>
