@@ -155,7 +155,7 @@ public class RegisterPage extends AppCompatActivity {
         else if (!registerEmail.contains("@")) {
             Toast.makeText(RegisterPage.this, "Please enter an valid email", Toast.LENGTH_SHORT).show();
         }
-        else if (!registerEmail.contains(" ")) {
+        else if (registerEmail.contains(" ")) {
             Toast.makeText(RegisterPage.this, "Please enter an valid email", Toast.LENGTH_SHORT).show();
         }
         else if (registerPhone.isEmpty()) {

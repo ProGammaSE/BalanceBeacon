@@ -50,56 +50,7 @@ public class AssessmentPage extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Assessments");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         assessmentLayout = findViewById(R.id.assessment_layout);
-        assessmentContinueButton = findViewById(R.id.assessment_continue_button);
         loadAssessmentAreas();
-
-        // clicking on the continue button
-        assessmentContinueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(AssessmentPage.this, "Assessment updated", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(AssessmentPage.this, MainPage.class);
-//                startActivity(intent);
-            }
-        });
-    }
-
-    // this function works when clicking on the Menu icon
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    // when clicks on the button in the menu, this function will routes to the relevant page
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int itemId = item.getItemId();
-        if (itemId == R.id.menu_main_page) {
-            Intent intent = new Intent(AssessmentPage.this, MainPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(AssessmentPage.this, AssessmentPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_my_goals) {
-            Intent intent = new Intent(AssessmentPage.this, MyGoalsPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_achievments) {
-            Intent intent = new Intent(AssessmentPage.this, AchiementsPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_coaching_mentoring) {
-            Intent intent = new Intent(AssessmentPage.this, CoachesPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_feedback) {
-            Intent intent = new Intent(AssessmentPage.this, FeedbackPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_logout) {
-            Intent intent = new Intent(AssessmentPage.this, LoginPage.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void showPopUpDialog(String popUpTitle, String popUpDescription) {
@@ -160,15 +111,21 @@ public class AssessmentPage extends AppCompatActivity {
                 SeekBar currentBar = view.findViewById(R.id.question_seekbar_01);
                 SeekBar futureBar = view.findViewById(R.id.question_seekbar_02);
 
+                // define the "Done" button in the question window
+                Button questionDone = view.findViewById(R.id.question_done);
+                questionDone.setEnabled(false);
+
                 int seekBarSetAreaCount = areaLoopCount;
                 // below functions work when changing the CURRENT seekbar slider
                 currentBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        // set the percentage value
                         currentPercentage.setText(progress + "/10");
 
                         // adding current value to the update object
                         userAssessResponse.getAssessmentPayloads().get(seekBarSetAreaCount).setAreaCurrent(progress);
+
                     }
 
                     @Override
@@ -186,6 +143,8 @@ public class AssessmentPage extends AppCompatActivity {
                 futureBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                        // set the percentage value
                         futurePercentage.setText(progress + "/10");
 
                         // adding future value to the update object
@@ -194,12 +153,15 @@ public class AssessmentPage extends AppCompatActivity {
 
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
-
+                        questionDone.setEnabled(false);
                     }
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-
+                        // enable the "Done" button only if future value is set
+                        if (seekBar.getProgress() != 0) {
+                            questionDone.setEnabled(true);
+                        }
                     }
                 });
 

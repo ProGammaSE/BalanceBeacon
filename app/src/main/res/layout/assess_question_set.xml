@@ -15,7 +15,6 @@
             android:id="@+id/question_card_01"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:background="#DFF5FF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +23,7 @@
         <SeekBar
             android:id="@+id/question_seekbar_01"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
@@ -58,19 +57,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="35dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/sf_display_semibold"
             android:text="0"
             android:textColor="@color/purple_500"
             android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/question_seekbar_01"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question_01" />
+            app:layout_constraintTop_toBottomOf="@+id/question_seekbar_01" />
 
         <SeekBar
             android:id="@+id/question_seekbar_02"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
@@ -104,14 +103,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="35dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/sf_display_semibold"
             android:text="0"
             android:textColor="@color/purple_500"
             android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/question_seekbar_02"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question_02" />
+            app:layout_constraintTop_toBottomOf="@+id/question_seekbar_02" />
 
         <TextView
             android:id="@+id/question_title"
@@ -131,31 +130,31 @@
             android:id="@+id/question_done"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_marginStart="7dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="70dp"
             android:background="@drawable/area_button_design_selected"
             android:backgroundTint="@color/bb_green"
-            android:padding="5dp"
+            android:gravity="center|center_horizontal|center_vertical"
             android:text="Done"
+            android:textAllCaps="false"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/question_close"
-            app:layout_constraintTop_toBottomOf="@+id/question_seekbar_02" />
-
-        <Button
-            android:id="@+id/question_close"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="7dp"
-            android:background="@drawable/area_button_design_choose"
-            android:backgroundTint="@color/bb_green"
-            android:padding="5dp"
-            android:text="Close"
-            app:layout_constraintEnd_toStartOf="@+id/question_done"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/question_seekbar_02" />
+
+<!--        <Button-->
+<!--            android:id="@+id/question_close"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="70dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_marginEnd="7dp"-->
+<!--            android:background="@drawable/area_button_design_choose"-->
+<!--            android:backgroundTint="@color/bb_green"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Close"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/question_done"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/question_seekbar_02" />-->
 
 <!--        <TextView-->
 <!--            android:id="@+id/measure_text_01"-->

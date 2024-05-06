@@ -74,8 +74,8 @@ public class FeedbackPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(FeedbackPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(FeedbackPage.this, AssessmentPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(FeedbackPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(FeedbackPage.this, MyGoalsPage.class);
@@ -85,9 +85,6 @@ public class FeedbackPage extends AppCompatActivity {
             startActivity(intent);
         } else if (itemId == R.id.menu_coaching_mentoring) {
             Intent intent = new Intent(FeedbackPage.this, CoachesPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_feedback) {
-            Intent intent = new Intent(FeedbackPage.this, FeedbackPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_logout) {
             Intent intent = new Intent(FeedbackPage.this, LoginPage.class);

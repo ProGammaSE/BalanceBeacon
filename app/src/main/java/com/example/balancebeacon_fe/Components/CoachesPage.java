@@ -76,17 +76,14 @@ public class CoachesPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(CoachesPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(CoachesPage.this, AssessmentPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(CoachesPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(CoachesPage.this, MyGoalsPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_achievments) {
             Intent intent = new Intent(CoachesPage.this, AchiementsPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_coaching_mentoring) {
-            Intent intent = new Intent(CoachesPage.this, CoachesPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_feedback) {
             Intent intent = new Intent(CoachesPage.this, FeedbackPage.class);

@@ -41,6 +41,7 @@ import retrofit2.Response;
 public class AchiementsPage extends AppCompatActivity {
 
     TextView achievementAwardsCount;
+    ImageView achievements_button;
     ImageView rowOneColumnOne, rowOneColumnTwo, rowTwoColumnOne, rowTwoColumnTwo, rowThreeColumnOne, rowThreeColumnTwo;
 
     @Override
@@ -56,8 +57,17 @@ public class AchiementsPage extends AppCompatActivity {
         rowTwoColumnTwo = findViewById(R.id.rowTwoColumnTwo);
         rowThreeColumnOne = findViewById(R.id.rowThreeColumnOne);
         rowThreeColumnTwo = findViewById(R.id.rowThreeColumnTwo);
+        achievements_button = findViewById(R.id.achievements_button);
 
         loadAwards();
+
+        achievements_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AchiementsPage.this, MainPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // this function works when clicking on the Menu icon
@@ -76,14 +86,11 @@ public class AchiementsPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(AchiementsPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(AchiementsPage.this, AssessmentPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(AchiementsPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(AchiementsPage.this, MyGoalsPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_achievments) {
-            Intent intent = new Intent(AchiementsPage.this, AchiementsPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_coaching_mentoring) {
             Intent intent = new Intent(AchiementsPage.this, CoachesPage.class);

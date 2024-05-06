@@ -2,8 +2,14 @@ package com.example.balancebeacon_fe.Components;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,6 +47,11 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -53,8 +65,10 @@ public class MainPage extends AppCompatActivity {
     PieChart pieChart;
     RadarChart radarChart;
     TableLayout tableLayout;
+    TextView pieChartMiddleText;
 
-    ImageView mainPageContinueButton;
+    Button mainPageContinueButton;
+    ImageView shareIcon;
     UserAssessResponse userAssessResponse = new UserAssessResponse();
 
     @Override
@@ -67,6 +81,8 @@ public class MainPage extends AppCompatActivity {
 //        radarChart = findViewById(R.id.main_radar_chart);
         tableLayout = findViewById(R.id.main_table_layout);
         mainPageContinueButton = findViewById(R.id.main_page_continue_button);
+        pieChartMiddleText = findViewById(R.id.pie_chart_middle_text);
+        shareIcon = findViewById(R.id.share_icon);
 
         getAllUserAreas();
 
@@ -75,6 +91,24 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainPage.this, TipsPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // clicking on the Pir chart to do a new assessment
+        pieChartMiddleText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, LandingPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // clicking on the share icon
+        shareIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, ExportDataPage.class);
                 startActivity(intent);
             }
         });
@@ -93,11 +127,8 @@ public class MainPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int itemId = item.getItemId();
-        if (itemId == R.id.menu_main_page) {
-            Intent intent = new Intent(MainPage.this, MainPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(MainPage.this, AssessmentPage.class);
+        if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(MainPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(MainPage.this, MyGoalsPage.class);
@@ -138,7 +169,6 @@ public class MainPage extends AppCompatActivity {
                     Toast.makeText(MainPage.this, response.body().getResponseDescription(), Toast.LENGTH_SHORT).show();
                     userAssessResponse = response.body();
                     loadPieChart();
-//                    loadRadarChart();
                     loadTable();
 
                     // set assessment id in the cache memory
@@ -171,14 +201,17 @@ public class MainPage extends AppCompatActivity {
                 entries.add(new PieEntry((userAssessResponse.getAssessmentPayloads().get(i).getAreaFuture()), userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription()));
             }
 
-            PieDataSet pieDataSet = new PieDataSet(entries, "Areas");
+            PieDataSet pieDataSet = new PieDataSet(entries, "");
             pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
 
+            pieChart.setCenterTextSize(14);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.getLegend().setEnabled(false);
             PieData pieData = new PieData(pieDataSet);
             pieChart.setData(pieData);
 
-            pieChart.getDescription().setEnabled(true);
-            pieChart.animateY(1000);
+            pieChart.animateY(1200);
+            pieChart.animateX(1000);
             pieChart.invalidate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -222,21 +255,31 @@ public class MainPage extends AppCompatActivity {
 //        radarChart.setData(radarData);
 //    }
 
+    // function to load table and the table data
     public void loadTable() {
+        // the below line added to expand the column data accordingly
+        tableLayout.setStretchAllColumns(true);
         tableLayout.removeAllViews();
-
-
 
         try {
             for (int i=0 ; i<userAssessResponse.getAssessmentPayloads().size() ; i++) {
                 TableRow tableRow = new TableRow(MainPage.this);
+                tableRow.setWeightSum(16);
                 System.out.println("LOOP COUNT: " + i);
                 View tableView = getLayoutInflater().inflate(R.layout.table_data, null);
 
                 TextView areaText = tableView.findViewById(R.id.table_data_area);
+                areaText.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 4f));
+
+
                 TextView currentText = tableView.findViewById(R.id.table_data_current);
+                currentText.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 4f));
+
                 TextView futureText = tableView.findViewById(R.id.table_data_future);
+                futureText.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 4f));
+
                 TextView gapText = tableView.findViewById(R.id.table_data_gap);
+                gapText.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 4f));
 
                 areaText.setText(userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription());
                 currentText.setText("" + userAssessResponse.getAssessmentPayloads().get(i).getAreaCurrent());
@@ -249,6 +292,28 @@ public class MainPage extends AppCompatActivity {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public void layoutToImage() {
+        // convert view group to bitmap
+        tableLayout.setDrawingCacheEnabled(true);
+        tableLayout.buildDrawingCache();
+        Bitmap bm = tableLayout.getDrawingCache();
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+
+        File f = new File(Environment.DIRECTORY_DOWNLOADS);
+        try {
+            File file = new File(f, "image.png");
+            file.createNewFile();
+//            FileOutputStream fo = new FileOutputStream(f);
+//            fo.write(bytes.toByteArray());
+            Toast.makeText(MainPage.this, "Image captures successfully", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

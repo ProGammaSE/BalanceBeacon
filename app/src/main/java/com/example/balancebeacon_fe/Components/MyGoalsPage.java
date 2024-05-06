@@ -2,6 +2,7 @@ package com.example.balancebeacon_fe.Components;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -80,11 +81,8 @@ public class MyGoalsPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(MyGoalsPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(MyGoalsPage.this, AssessmentPage.class);
-            startActivity(intent);
-        } else if (itemId == R.id.menu_my_goals) {
-            Intent intent = new Intent(MyGoalsPage.this, MyGoalsPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(MyGoalsPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_achievments) {
             Intent intent = new Intent(MyGoalsPage.this, AchiementsPage.class);
@@ -146,8 +144,12 @@ public class MyGoalsPage extends AppCompatActivity {
     public void loadMyGoals() {
         activityMyGoalLayout.removeAllViews();
         try {
+            // get current logged in user ID from the mobile cache and set it to the object
+            SharedPreferences sharedpreferences = getSharedPreferences("balanceBeacon",MODE_PRIVATE);
+            int userId = sharedpreferences.getInt("userId", 0);
+
             GoalController goalController = RetrofitClient.getRetrofitInstance().create(GoalController.class);
-            Call<List<Goals>> call = goalController.getAllGoals();
+            Call<List<Goals>> call = goalController.getAllGoals(userId);
 
             call.enqueue(new Callback<List<Goals>>() {
                 @Override

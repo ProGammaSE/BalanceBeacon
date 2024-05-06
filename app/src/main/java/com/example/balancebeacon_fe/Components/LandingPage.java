@@ -137,8 +137,8 @@ public class LandingPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(LandingPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(LandingPage.this, AssessmentPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(LandingPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(LandingPage.this, MyGoalsPage.class);

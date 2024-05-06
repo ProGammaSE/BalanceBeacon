@@ -4,8 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,46 +23,51 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Components.ExportDataPage"
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage" />
+        <activity
             android:name=".Components.FeedbackPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.CoachesPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.AchiementsPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.MyGoalsPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.TestComponent"
             android:exported="false" />
         <activity
             android:name=".Components.SetGoalPage"
             android:exported="false"
-            android:parentActivityName=".Components.TipsPage"/>
+            android:parentActivityName=".Components.TipsPage" />
         <activity
             android:name=".Components.TipsPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.MainPage"
             android:exported="false"
-            android:parentActivityName=".Components.MainPage"/>
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.AssessmentPage"
             android:exported="false" />
         <activity
             android:name=".Components.LandingPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Components.MainPage" />
         <activity
             android:name=".Components.LoginPage"
             android:exported="false"
-            android:parentActivityName=".Components.WelcomePage"/>
+            android:parentActivityName=".Components.WelcomePage" />
         <activity
             android:name=".Components.RegisterPage"
             android:exported="false"
@@ -71,6 +81,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

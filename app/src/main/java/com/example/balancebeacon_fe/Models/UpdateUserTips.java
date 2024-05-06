@@ -1,11 +1,22 @@
 package com.example.balancebeacon_fe.Models;
 
 public class UpdateUserTips {
+
+    int userId;
+
     int userTipId = 0;
     String areaDescription;
     String tipDescription;
     int tipStatus = 0;
     String goalDays = "";
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public int getUserTipId() {
         return userTipId;

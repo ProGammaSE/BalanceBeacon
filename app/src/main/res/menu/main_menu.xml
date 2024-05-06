@@ -6,10 +6,6 @@
         android:icon="@drawable/arrow_back_icon"
         android:title="Main Page"/>
 
-    <item
-        android:id="@+id/menu_assessments"
-        android:icon="@drawable/arrow_back_icon"
-        android:title="Assessments" />
 
     <item
         android:id="@+id/menu_my_goals"
@@ -24,12 +20,17 @@
     <item
         android:id="@+id/menu_coaching_mentoring"
         android:icon="@drawable/arrow_back_icon"
-        android:title="Coaching &amp; Mentoring" />
+        android:title="Coaching &amp; mentoring" />
 
     <item
         android:id="@+id/menu_feedback"
         android:icon="@drawable/arrow_back_icon"
         android:title="Feedback" />
+
+    <item
+        android:id="@+id/menu_export"
+        android:icon="@drawable/arrow_back_icon"
+        android:title="Share with friends" />
 
     <item
         android:id="@+id/menu_logout"

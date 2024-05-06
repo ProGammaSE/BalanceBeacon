@@ -39,6 +39,7 @@ public class SetGoalPage extends AppCompatActivity {
     Object selectedGoalButton = 0;
     String tipDescription_cache = "";
     String areaDescription_cache = "";
+    int userId_cache = 0;
     int userTipId_cache = 0;
     String goalDays = "";
 
@@ -57,6 +58,7 @@ public class SetGoalPage extends AppCompatActivity {
         tipDescription_cache = sharedpreferences.getString("goalDescription", "null");
         areaDescription_cache = sharedpreferences.getString("goalTitle", "null");
         userTipId_cache = sharedpreferences.getInt("goalTipId", 0);
+        userId_cache = sharedpreferences.getInt("userId", 0);
 
         loadGoalWindow();
 
@@ -66,6 +68,7 @@ public class SetGoalPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (userTipId_cache != 0 && !goalDays.isEmpty()) {
                     UpdateUserTips updateUserTips = new UpdateUserTips();
+                    updateUserTips.setUserId(userId_cache);
                     updateUserTips.setUserTipId(userTipId_cache);
                     updateUserTips.setTipStatus(1);
                     updateUserTips.setTipDescription(tipDescription_cache);
@@ -122,8 +125,8 @@ public class SetGoalPage extends AppCompatActivity {
         if (itemId == R.id.menu_main_page) {
             Intent intent = new Intent(SetGoalPage.this, MainPage.class);
             startActivity(intent);
-        } else if (itemId == R.id.menu_assessments) {
-            Intent intent = new Intent(SetGoalPage.this, AssessmentPage.class);
+        } else if (itemId == R.id.menu_export) {
+            Intent intent = new Intent(SetGoalPage.this, ExportDataPage.class);
             startActivity(intent);
         } else if (itemId == R.id.menu_my_goals) {
             Intent intent = new Intent(SetGoalPage.this, MyGoalsPage.class);
