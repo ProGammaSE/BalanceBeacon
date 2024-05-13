@@ -40,7 +40,7 @@ import retrofit2.Response;
 public class TipsPage extends AppCompatActivity {
 
     LinearLayout tipPageLayout;
-    ImageView tipPageContinueButton;
+    Button tipPageContinueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

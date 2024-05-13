@@ -27,8 +27,8 @@ public class RetrofitClient {
     public static Retrofit getRetrofitInstance() {
         System.out.println("Round Robin: " + roundRobin());
 //         String BASE_URL = "http://172.20.10.9:8080";
-         String BASE_URL = "http://192.168.0.103:8080";
-//        String BASE_URL = "http://10.0.2.2:8080";
+//         String BASE_URL = "http://192.168.0.103:8080";
+        String BASE_URL = "http://10.0.2.2:8080";
 //        String BASE_URL = roundRobin();
         System.out.println("establishing the backend connection: " + BASE_URL);
 

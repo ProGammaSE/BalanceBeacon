@@ -45,7 +45,6 @@
         android:layout_height="53dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/area_button_design_selected"
-        android:capitalize="none"
         android:text="Submit"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"

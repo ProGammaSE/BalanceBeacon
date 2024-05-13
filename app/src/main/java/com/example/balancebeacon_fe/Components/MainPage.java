@@ -1,5 +1,7 @@
 package com.example.balancebeacon_fe.Components;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,6 +12,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +34,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.example.balancebeacon_fe.Controllers.AssessAreaController;
 import com.example.balancebeacon_fe.Models.UserAssessResponse;
@@ -52,7 +57,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -70,12 +77,14 @@ public class MainPage extends AppCompatActivity {
     Button mainPageContinueButton;
     ImageView shareIcon;
     UserAssessResponse userAssessResponse = new UserAssessResponse();
+//    View rootView = getWindow().getDecorView().findViewById(R.id.main_table_layout);
+//    Bitmap bitmap = MainPage.getBitmapFromView(rootView);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("BalanceBeacon");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Wheel of Life");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         pieChart = findViewById(R.id.main_piechart);
 //        radarChart = findViewById(R.id.main_radar_chart);
@@ -198,7 +207,7 @@ public class MainPage extends AppCompatActivity {
 
         try {
             for (int i=0 ; i<areaLoopCount ; i++) {
-                entries.add(new PieEntry((userAssessResponse.getAssessmentPayloads().get(i).getAreaFuture()), userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription()));
+                entries.add(new PieEntry((userAssessResponse.getAssessmentPayloads().get(i).getAreaCurrent()), userAssessResponse.getAssessmentPayloads().get(i).getAreaDescription()));
             }
 
             PieDataSet pieDataSet = new PieDataSet(entries, "");
@@ -217,43 +226,6 @@ public class MainPage extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
-
-//    public void loadRadarChart() {
-//        RadarChart radarChart = findViewById(R.id.test_redar_chart);
-//
-//        ArrayList<RadarEntry> userAreas = new ArrayList<>();
-//
-//        userAreas.add(new RadarEntry(10, "1000"));
-//        userAreas.add(new RadarEntry(2, 2500));
-//        userAreas.add(new RadarEntry(5, 2200));
-//        userAreas.add(new RadarEntry(0, 2000));
-//        userAreas.add(new RadarEntry(1, 999));
-//        userAreas.add(new RadarEntry(6, 1890));
-//
-//        RadarDataSet radarDataSet = new RadarDataSet(userAreas, "Test areas");
-//        radarDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-//        radarDataSet.setLineWidth(2f);
-//        radarDataSet.setValueTextColor(Color.RED);
-//        radarDataSet.setValueTextSize(14f);
-//        radarDataSet.setFillColor(Color.GREEN);
-//        radarDataSet.setDrawFilled(true);
-//
-////        radarChart.setx
-//
-//        RadarData radarData = new RadarData();
-//        radarData.addDataSet(radarDataSet);
-//
-//        radarChart.animateY(1000);
-//        radarChart.invalidate();
-//
-//        String[] labels = {"Family. Love. Kids", "Money", "Education", "Hobbies", "Love & Romance", "Personal Growth"};
-//
-//        XAxis xAxis = radarChart.getXAxis();
-//        xAxis.mAxisMaximum = 10;
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
-//
-//        radarChart.setData(radarData);
-//    }
 
     // function to load table and the table data
     public void loadTable() {
@@ -290,30 +262,50 @@ public class MainPage extends AppCompatActivity {
                 tableRow.addView(tableView);
                 tableLayout.addView(tableRow);
             }
+
+            //
+//            try {
+//                File imageFile = MainPage.saveBitmap(this, bitmap);
+//                MainPage.shareImage(this, imageFile);
+//                Toast.makeText(MainPage.this, "Screenshot taken", Toast.LENGTH_SHORT).show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public void layoutToImage() {
-        // convert view group to bitmap
-        tableLayout.setDrawingCacheEnabled(true);
-        tableLayout.buildDrawingCache();
-        Bitmap bm = tableLayout.getDrawingCache();
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setType("image/jpeg");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+    public static Bitmap getBitmapFromView(View view) {
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
 
-        File f = new File(Environment.DIRECTORY_DOWNLOADS);
-        try {
-            File file = new File(f, "image.png");
-            file.createNewFile();
-//            FileOutputStream fo = new FileOutputStream(f);
-//            fo.write(bytes.toByteArray());
-            Toast.makeText(MainPage.this, "Image captures successfully", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static File saveBitmap(Context context, Bitmap bitmap) throws IOException {
+        File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "layout_image.png");
+        FileOutputStream outputStream = new FileOutputStream(file);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        outputStream.flush();
+        outputStream.close();
+        return file;
+    }
+
+    public static void shareImage(Context context, File file) {
+        if (file != null && file.exists()) {
+            // Share the image file
+            // Create the intent
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("image/*");
+            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            context.startActivity(Intent.createChooser(shareIntent, "Share layout as image"));
+        } else {
+            // Handle error
+            Toast.makeText(context, "Error sharing image", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -165,11 +165,11 @@ public class AchiementsPage extends AppCompatActivity {
                         totalAchievementCount++;
                         rowOneColumnOne.setBackgroundResource(R.drawable.award_01_yes);
                     }
-                    if (response.body().getGoalCount() > 0) {
+                    if (response.body().getGoalCompletionCount() > 0) {
                         totalAchievementCount++;
                         rowOneColumnTwo.setBackgroundResource(R.drawable.award_02_yes);
                     }
-                    if (response.body().getGoalCompletionCount() > 0) {
+                    if (response.body().getGoalCompletionCount() > 2) {
                         totalAchievementCount++;
                         rowTwoColumnOne.setBackgroundResource(R.drawable.award_03_yes);
                     }
